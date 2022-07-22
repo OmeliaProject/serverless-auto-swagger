@@ -9,6 +9,9 @@
     "description": {
       "type": "string"
     },
+    "authenticated": {
+      "type": "boolean"
+    },
     "exclude": {
       "nullable": true,
       "type": "boolean"
