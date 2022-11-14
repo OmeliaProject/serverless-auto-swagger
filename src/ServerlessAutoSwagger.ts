@@ -389,19 +389,35 @@ export default class ServerlessAutoSwagger {
         );
 
       Object.entries(rawQueryParams).forEach(([param, data]) => {
+        const type = data.type ?? 'string';
+        let example: any;
+        switch (type) {
+          case 'array':
+            example = [];
+            break;
+          case 'integer':
+            example = 0;
+            break;
+          case 'string':
+            example = "example";
+          default:
+            example = false
+            break;
+        }
+
         parameters.push({
           in: 'query',
           name: param,
-          type: data.type ?? 'string',
+          type,
           description: data.description,
           // @ts-ignore
-          "x-example": "string",
+          "x-example": example,
           required: data.required ?? false,
           ...(data.type === 'array'
             ? {
-                items: { type: data.arrayItemsType },
-                collectionFormat: 'multi',
-              }
+              items: { type: data.arrayItemsType },
+              collectionFormat: 'multi',
+            }
             : {}),
         });
       });
