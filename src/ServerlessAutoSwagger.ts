@@ -327,6 +327,8 @@ export default class ServerlessAutoSwagger {
       required,
       description: isObj ? paramInfoOrRequired.description : undefined,
       type: 'string',
+      // @ts-ignore
+      "x-example": 'string'
     };
   };
 
@@ -400,6 +402,7 @@ export default class ServerlessAutoSwagger {
             break;
           case 'string':
             example = "example";
+            break;
           default:
             example = false
             break;
@@ -421,6 +424,7 @@ export default class ServerlessAutoSwagger {
             : {}),
         });
       });
+      console.log(parameters[parameters.length - 1])
     }
 
     return parameters;
