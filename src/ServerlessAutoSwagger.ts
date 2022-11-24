@@ -424,7 +424,6 @@ export default class ServerlessAutoSwagger {
             : {}),
         });
       });
-      console.log(parameters[parameters.length - 1])
     }
 
     return parameters;
